@@ -29,3 +29,19 @@ func DeferredE(deferred func() error) {
 		panic(err)
 	}
 }
+
+func Deferred(deferred func()) {
+	prev := recover()
+	defer func() {
+		if err := recover(); err != nil {
+			if prev != nil {
+				panic(&wrapped{err.(error), prev.(error)})
+			}
+			panic(err)
+		}
+		if prev != nil {
+			panic(prev)
+		}
+	}()
+	deferred()
+}
