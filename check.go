@@ -42,10 +42,12 @@ func E(err error) {
 	}
 }
 
-func El(err error) {
+func El(err error) bool {
 	if err != nil {
 		log.Println(err)
+		return false
 	}
+	return true
 }
 
 func IE(n int, err error) int {
