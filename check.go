@@ -30,6 +30,10 @@ func throw(err error) {
 	panic(err)
 }
 
+func Throw(err error) {
+	throw(err)
+}
+
 func Efile(op string, file string, err error) {
 	if err != nil {
 		throw(fmt.Errorf("%s on '%s': %w", op, file, err))
